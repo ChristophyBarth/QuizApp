@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="quizViewModel"
+            type="capps.quiz.app.viewmodel.QuizFragmentVM" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/blue_black"
+        tools:context=".QuizFragment">
+
+        <TextView
+            android:id="@+id/math_txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="30sp"
+            android:textColor="@android:color/darker_gray"
+            android:fontFamily="@font/barlow_light"
+            android:text="@{quizViewModel.topic}"
+            android:textAlignment="viewStart"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/question_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/math_txt"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="15dp"
+            android:gravity="bottom"
+            android:text="Question"
+            android:textSize="35sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/current_question"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/math_txt"
+            android:layout_marginStart="10dp"
+            android:layout_alignBaseline="@id/question_txt"
+            android:layout_toEndOf="@id/question_txt"
+            android:text="@={quizViewModel.currentQuestionForTv}"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            tools:text="06" />
+
+        <TextView
+            android:id="@+id/total_question"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/math_txt"
+            android:layout_alignBaseline="@id/current_question"
+            android:layout_marginTop="20sp"
+            android:layout_toEndOf="@id/current_question"
+            android:fontFamily="@font/barlow_light"
+            android:textColor="@android:color/darker_gray"
+            android:gravity="bottom"
+            android:text="@={quizViewModel.questionCount}"
+            android:textSize="30sp"
+            tools:text="/20" />
+
+        <View
+            android:id="@+id/indicator1"
+            android:layout_width="20dp"
+            android:layout_height="5dp"
+            android:layout_below="@id/total_question"
+            android:layout_alignStart="@id/math_txt"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="7dp"
+            android:background="@drawable/indicator_bg"
+            app:viewBackground="@{quizViewModel.indicator1}" />
+
+        <View
+            android:id="@+id/indicator2"
+            android:layout_width="20dp"
+            android:layout_height="5dp"
+            android:layout_below="@id/total_question"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="7dp"
+            android:layout_toEndOf="@id/indicator1"
+            android:background="@drawable/indicator_bg"
+            app:viewBackground="@{quizViewModel.indicator2}" />
+
+        <View
+            android:id="@+id/indicator3"
+            android:layout_width="20dp"
+            android:layout_height="5dp"
+            android:layout_below="@id/total_question"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="7dp"
+            android:layout_toEndOf="@id/indicator2"
+            android:background="@drawable/indicator_bg"
+            app:viewBackground="@{quizViewModel.indicator3}" />
+
+        <TextView
+            android:id="@+id/question"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/indicator3"
+            android:layout_alignStart="@id/math_txt"
+            android:layout_alignEnd="@id/math_txt"
+            android:layout_marginTop="40dp"
+            android:text="@={quizViewModel.question}"
+            android:textSize="20sp" />
+
+        <RelativeLayout
+            android:id="@+id/a"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_below="@id/question"
+            android:layout_alignStart="@id/math_txt"
+            android:layout_alignEnd="@id/math_txt"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/not_answer_bg"
+            android:onClick="@{()-> quizViewModel.option1()}"
+            app:viewBackground="@{quizViewModel.option1Selection}">
+
+            <TextView
+                android:id="@+id/answer1_txt"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="30dp"
+                android:text="@={quizViewModel.option1}"
+                android:textSize="20sp"
+                app:correspondingTextViewBG="@{quizViewModel.option1TextColor}" />
+
+            <RadioButton
+                android:id="@+id/answer1_check"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                app:buttonTint="@color/radio_button_color"
+                android:checked="@{quizViewModel.radio1Selected}"
+                android:clickable="false" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/b"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_below="@id/a"
+            android:layout_alignStart="@id/math_txt"
+            android:layout_alignEnd="@id/math_txt"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/not_answer_bg"
+            android:onClick="@{()-> quizViewModel.option2()}"
+            app:viewBackground="@{quizViewModel.option2Selection}">
+
+            <TextView
+                android:id="@+id/answer2_txt"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="30dp"
+                android:text="@={quizViewModel.option2}"
+                android:textSize="20sp"
+                app:correspondingTextViewBG="@{quizViewModel.option2TextColor}" />
+
+            <RadioButton
+                android:id="@+id/answer2_check"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                app:buttonTint="@color/radio_button_color"
+                android:checked="@{quizViewModel.radio2Selected}"
+                android:clickable="false" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/c"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_below="@id/b"
+            android:layout_alignStart="@id/math_txt"
+            android:layout_alignEnd="@id/math_txt"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/not_answer_bg"
+            android:onClick="@{()-> quizViewModel.option3()}"
+            app:viewBackground="@{quizViewModel.option3Selection}">
+
+            <TextView
+                android:id="@+id/answer3_txt"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="30dp"
+                android:text="@={quizViewModel.option3}"
+                android:textSize="20sp"
+                app:correspondingTextViewBG="@{quizViewModel.option3TextColor}" />
+
+            <RadioButton
+                android:id="@+id/answer3_check"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                app:buttonTint="@color/radio_button_color"
+                android:checked="@{quizViewModel.radio3Selected}"
+                android:clickable="false" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/d"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_below="@id/c"
+            android:layout_alignStart="@id/math_txt"
+            android:layout_alignEnd="@id/math_txt"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/not_answer_bg"
+            android:onClick="@{()-> quizViewModel.option4()}"
+            app:viewBackground="@{quizViewModel.option4Selection}">
+
+            <TextView
+                android:id="@+id/answer4_txt"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="30dp"
+                android:text="@={quizViewModel.option4}"
+                android:textSize="20sp"
+                app:correspondingTextViewBG="@{quizViewModel.option4TextColor}" />
+
+            <RadioButton
+                android:id="@+id/answer4_check"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:checked="@{quizViewModel.radio4Selected}"
+                app:buttonTint="@color/radio_button_color"
+                android:clickable="false" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/linear_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginVertical="30dp"
+            android:weightSum="2">
+
+            <TextView
+                android:id="@+id/quit_quiz"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginEnd="5dp"
+                android:textColor="@android:color/darker_gray"
+                android:gravity="start|center_vertical"
+                android:drawablePadding="5dp"
+                android:textSize="20sp"
+                android:text="Quit Quiz"
+                app:drawableStartCompat="@drawable/power"
+                app:drawableTint="@android:color/darker_gray" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/next"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:layout_marginStart="5dp"
+                android:background="@drawable/button_bg"
+                android:onClick="@{()-> quizViewModel.next()}"
+                android:text="@{quizViewModel.buttonText}"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</layout>
