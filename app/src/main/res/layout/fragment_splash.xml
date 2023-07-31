@@ -4,18 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     >
 
-<RelativeLayout
+<ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SplashFragment"
-    android:background="@color/blue_black">
+    android:background="@color/blue_black"
+    android:fillViewport="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
     <ImageView
         android:layout_width="170dp"
         android:layout_height="170dp"
         android:layout_centerInParent="true"
-        android:src="@drawable/my_logo"/>
+        android:src="@drawable/my_logo"
+        android:contentDescription="App Logo" />
 
-</RelativeLayout>
+
+    </RelativeLayout>
+</ScrollView>
 
 </layout>

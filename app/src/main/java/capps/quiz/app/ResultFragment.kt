@@ -14,8 +14,8 @@ import capps.quiz.app.viewmodel.ResultFragmentVM
 import capps.quiz.app.viewmodelfactory.ResultFragmentVMFactory
 
 class ResultFragment : Fragment() {
-    lateinit var binding : FragmentResultBinding
-    lateinit var resultFragmentVM: ResultFragmentVM
+    private lateinit var binding : FragmentResultBinding
+    private lateinit var resultFragmentVM: ResultFragmentVM
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

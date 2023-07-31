@@ -13,7 +13,7 @@ import capps.quiz.app.databinding.FragmentSplashBinding
 
 
 class SplashFragment : Fragment() {
-    lateinit var binding: FragmentSplashBinding
+    private lateinit var binding: FragmentSplashBinding
 
     private lateinit var handler: Handler
     private lateinit var navigateToFragment: Runnable

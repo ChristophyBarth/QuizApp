@@ -2,6 +2,7 @@ package capps.quiz.app.others
 
 import android.util.Log
 import android.view.View
+import android.widget.ScrollView
 import android.widget.TextView
 import androidx.annotation.MainThread
 import androidx.annotation.Nullable
@@ -58,5 +59,13 @@ object BindingAdapters {
     @BindingAdapter("correspondingTextViewBG")
     fun setTextColor(textView: TextView, color: Int?) {
         textView.setTextColor(ContextCompat.getColor(textView.context, color!!))
+    }
+
+    @JvmStatic
+    @BindingAdapter("scroll")
+    fun scroll(scrollView: ScrollView, scrollUp: Boolean) {
+        if (scrollUp && scrollView.scrollY != 0) {
+            scrollView.smoothScrollTo(0,0)
+        }
     }
 }

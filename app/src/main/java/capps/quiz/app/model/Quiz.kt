@@ -4,6 +4,7 @@ class Quiz {
     var question: String? = null
     var options: Option? = null
     var answer: String? = null
+    var selected: Boolean? = false
 
     constructor()
 
